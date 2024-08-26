@@ -1,0 +1,11 @@
+PUT  http://localhost:8000/events/6
+content-type: application/json
+
+
+{
+  "name": "Test event 3",
+  "description": "A test event 3",
+  "location": "Kigali ngali",
+  "dateTime": "2025-01-01T15:30:00.000Z",
+  "user_id": 1
+}
