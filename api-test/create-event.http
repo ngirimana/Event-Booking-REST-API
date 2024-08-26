@@ -5,5 +5,6 @@ content-type: application/json
   "name": "Test event",
   "description": "A test event",
   "location": "Kigali",
-  "dateTime": "2025-01-01T15:30:00.000Z"
+  "dateTime": "2025-01-01T15:30:00.000Z",
+  "user_id": 1
 }
