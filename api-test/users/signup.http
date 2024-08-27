@@ -1,0 +1,8 @@
+POST http://localhost:8000/users/signup
+Content-Type: application/json
+
+{
+  "name": "Schadrack",
+  "email": "schadran.gcp@gmail.com",
+  "password": "1234"
+}

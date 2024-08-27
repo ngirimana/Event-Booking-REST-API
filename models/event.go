@@ -40,6 +40,15 @@ func (e *Event) Save() error {
 	return err
 }
 
+// getEvents godoc
+// @Summary Get all events
+// @Description Retrieve a list of all events.
+// @Tags events
+// @Accept  json
+// @Produce  json
+// @Success 200 {array} Event
+// @Failure 500 {object} string
+// @Router /events [get]
 func GetAllEvents() ([]Event, error) {
 	query := `SELECT * FROM events`
 
