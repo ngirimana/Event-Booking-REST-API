@@ -1,10 +1,10 @@
 POST http://localhost:8000/events
 content-type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhZmFyaUBnbWFpbC5jb20iLCJleHAiOjE3MjQ5MTM1NTQsInVzZXJJZCI6Mn0.jsZQ6MGsmJMIqRafH0d7OfGqegm4i3nWM5_CMZE-dGw
 
 {
   "name": "Test event",
   "description": "A test event",
   "location": "Kigali",
-  "dateTime": "2025-01-01T15:30:00.000Z",
-  "user_id": 1
+  "dateTime": "2025-01-01T15:30:00.000Z"
 }

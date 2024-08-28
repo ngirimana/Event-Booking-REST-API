@@ -8,6 +8,17 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// getEvent godoc
+// @Summary Get an event by ID
+// @Description Retrieves a single event by its ID.
+// @Tags events
+// @Accept  json
+// @Produce  json
+// @Param id path int true "Event ID"
+// @Success 200 {object} models.Event "Successfully retrieved event"
+// @Failure 400 {object} map[string]string "Invalid event ID"
+// @Failure 404 {object} map[string]string "Event not found"
+// @Router /events/{id} [get]
 func getEvent(context *gin.Context) {
 	id, err := strconv.ParseInt(context.Param("id"), 10, 64)
 	if err != nil {
@@ -23,6 +34,15 @@ func getEvent(context *gin.Context) {
 	context.JSON(http.StatusOK, event)
 }
 
+// getEvents godoc
+// @Summary Get all events
+// @Description Retrieves all events.
+// @Tags events
+// @Accept  json
+// @Produce  json
+// @Success 200 {array} models.Event "Successfully retrieved events"
+// @Failure 500 {object} map[string]string "Could not fetch events"
+// @Router /events [get]
 func getEvents(context *gin.Context) {
 	events, err := models.GetAllEvents()
 	if err != nil {
@@ -33,6 +53,19 @@ func getEvents(context *gin.Context) {
 	context.JSON(http.StatusOK, events)
 }
 
+// createEvent godoc
+// @Summary Create a new event
+// @Description Creates a new event and saves it to the database.
+// @Tags events
+// @Accept  json
+// @Produce  json
+// @Param Authorization header string true "Bearer Token"
+// @Param event body models.Event true "Event data"
+// @Success 201 {object} map[string]interface{} "Event created successfully"
+// @Failure 400 {object} map[string]string "Could not parse request data"
+// @Failure 401 {object} map[string]string "Unauthorized"
+// @Failure 500 {object} map[string]string "Internal server error"
+// @Router /events [post]
 func createEvent(context *gin.Context) {
 	var event models.Event
 	err := context.ShouldBindJSON(&event)
@@ -42,8 +75,7 @@ func createEvent(context *gin.Context) {
 		return
 	}
 
-	event.ID = 1
-	event.UserID = 1
+	event.UserID = context.GetInt64("userId")
 
 	err = event.Save()
 	if err != nil {
@@ -54,6 +86,19 @@ func createEvent(context *gin.Context) {
 	context.JSON(http.StatusCreated, gin.H{"message": "Event created!", "event": event})
 }
 
+// updateEvent godoc
+// @Summary Update an event by ID
+// @Description Updates an existing event by its ID.
+// @Tags events
+// @Accept  json
+// @Produce  json
+// @Param id path int true "Event ID"
+// @Param event body models.Event true "Updated event data"
+// @Success 200 {object} map[string]interface{} "Event updated successfully"
+// @Failure 400 {object} map[string]string "Invalid event ID or request data"
+// @Failure 404 {object} map[string]string "Event not found"
+// @Failure 500 {object} map[string]string "Could not update event"
+// @Router /events/{id} [put]
 func updateEvent(context *gin.Context) {
 
 	id, err := strconv.ParseInt(context.Param("id"), 10, 64)
@@ -85,6 +130,18 @@ func updateEvent(context *gin.Context) {
 
 }
 
+// deleteEvent godoc
+// @Summary Delete an event by ID
+// @Description Deletes an event by its ID.
+// @Tags events
+// @Accept  json
+// @Produce  json
+// @Param id path int true "Event ID"
+// @Success 200 {object} map[string]string "Event deleted successfully"
+// @Failure 400 {object} map[string]string "Invalid event ID"
+// @Failure 404 {object} map[string]string "Event not found"
+// @Failure 500 {object} map[string]string "Could not delete event"
+// @Router /events/{id} [delete]
 func deleteEvent(context *gin.Context) {
 	id, err := strconv.ParseInt(context.Param("id"), 10, 64)
 	if err != nil {
