@@ -1,8 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "This is a sample server for demonstrating Swagger.",
-        "title": "Your API Title",
+        "description": "This is a backend API for an event booking application. It allows users to register for events, view events, and cancel registrations and authenticate users.",
         "termsOfService": "http://swagger.io/terms/",
         "contact": {
             "name": "API Support",

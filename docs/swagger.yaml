@@ -37,12 +37,13 @@ info:
     email: support@swagger.io
     name: API Support
     url: http://www.swagger.io/support
-  description: This is a sample server for demonstrating Swagger.
+  description: This is a backend API for an event booking application. It allows users
+    to register for events, view events, and cancel registrations and authenticate
+    users.
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: http://swagger.io/terms/
-  title: Your API Title
   version: "1.0"
 paths:
   /events:

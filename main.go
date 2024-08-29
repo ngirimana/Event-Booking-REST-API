@@ -2,17 +2,16 @@ package main
 
 import (
 	"example.com/rest-api/db"
+	_ "example.com/rest-api/docs"
 	"example.com/rest-api/routes"
 	"github.com/gin-gonic/gin"
-	_"example.com/rest-api/docs"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
-	
 )
 
-// @title Your API Title
+// @Events Booking Rest API
 // @version 1.0
-// @description This is a sample server for demonstrating Swagger.
+// @description This is a backend API for an event booking application. It allows users to register for events, view events, and cancel registrations and authenticate users.
 // @termsOfService http://swagger.io/terms/
 
 // @contact.name API Support
