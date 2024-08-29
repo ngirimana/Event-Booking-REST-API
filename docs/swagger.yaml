@@ -139,6 +139,12 @@ paths:
             additionalProperties:
               type: string
             type: object
+        "401":
+          description: You are not authorized to delete this event.
+          schema:
+            additionalProperties:
+              type: string
+            type: object
         "404":
           description: Event not found
           schema:
@@ -216,6 +222,12 @@ paths:
             additionalProperties:
               type: string
             type: object
+        "401":
+          description: You are not authorized to update this event.
+          schema:
+            additionalProperties:
+              type: string
+            type: object
         "404":
           description: Event not found
           schema:
@@ -229,6 +241,94 @@ paths:
               type: string
             type: object
       summary: Update an event by ID
+      tags:
+      - events
+  /events/{id}/register:
+    delete:
+      consumes:
+      - application/json
+      description: Cancel the authenticated user's registration for the specified
+        event
+      parameters:
+      - description: Event ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: successfully cancelled registration
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: invalid event ID
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: you can cancel registration for your own event
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: event not found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: could not cancel registration
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Cancel registration for an event
+      tags:
+      - events
+    post:
+      consumes:
+      - application/json
+      description: Register the authenticated user for the specified event
+      parameters:
+      - description: Event ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: successfully registered for event
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: invalid event ID
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: event not found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: could not register for event
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Register for an event
       tags:
       - events
   /users/login:

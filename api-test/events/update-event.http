@@ -1,12 +1,10 @@
-PUT  http://localhost:8000/events/6
+PUT  http://localhost:8000/events/7
 content-type: application/json
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNjaGFkcmFuQGdtYWlsLmNvbSIsImV4cCI6MTcyNDkxNTA2MiwidXNlcklkIjoxfQ.nCnabjuIMUmwFnwPcc3RPvyrYxWYWXBmR3HxKZQpa2s
 
-
 {
-  "name": "Test event 3",
-  "description": "A test event 3",
-  "location": "Kigali ngali",
-  "dateTime": "2025-01-01T15:30:00.000Z",
-  "user_id": 1
+  "name": "Test event xx",
+  "description": "A test event xx",
+  "location": "Kigali ngali  sad 5",
+  "dateTime": "2025-01-01T15:30:00.000Z"
 }

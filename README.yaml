@@ -1,0 +1,11 @@
+# Event Booking Rest API
+
+This is a simple REST API for event booking. It is built using gin-gonic and sqlite
+
+
+## Running the application
+
+#### To run the application, you need to have Go installed on your machine. You can download Go from [here](https://golang.org/dl/)
+#### Run Swagger UI: swag init
+#### Run the application: go run main.go
+

@@ -96,6 +96,7 @@ func createEvent(context *gin.Context) {
 // @Param event body models.Event true "Updated event data"
 // @Success 200 {object} map[string]interface{} "Event updated successfully"
 // @Failure 400 {object} map[string]string "Invalid event ID or request data"
+// @Failure 401 {object} map[string]string "You are not authorized to update this event."
 // @Failure 404 {object} map[string]string "Event not found"
 // @Failure 500 {object} map[string]string "Could not update event"
 // @Router /events/{id} [put]
@@ -106,12 +107,17 @@ func updateEvent(context *gin.Context) {
 		context.JSON(http.StatusBadRequest, gin.H{"message": "Invalid event ID."})
 		return
 	}
-	_, error := models.GetEvent(id)
+	userID := context.GetInt64("userId")
+	event, error := models.GetEvent(id)
 	if error != nil {
 		context.JSON(http.StatusNotFound, gin.H{"message": "Event not found."})
 		return
 	}
 
+	if event.UserID != userID {
+		context.JSON(http.StatusUnauthorized, gin.H{"message": "You are not authorized to update this event."})
+		return
+	}
 	var updatedEvent models.Event
 
 	err = context.ShouldBindJSON(&updatedEvent)
@@ -140,6 +146,7 @@ func updateEvent(context *gin.Context) {
 // @Success 200 {object} map[string]string "Event deleted successfully"
 // @Failure 400 {object} map[string]string "Invalid event ID"
 // @Failure 404 {object} map[string]string "Event not found"
+// @Failure 401 {object} map[string]string "You are not authorized to delete this event."
 // @Failure 500 {object} map[string]string "Could not delete event"
 // @Router /events/{id} [delete]
 func deleteEvent(context *gin.Context) {
@@ -151,6 +158,11 @@ func deleteEvent(context *gin.Context) {
 	event, error := models.GetEvent(id)
 	if error != nil {
 		context.JSON(http.StatusNotFound, gin.H{"message": "Event not found."})
+		return
+	}
+	userID := context.GetInt64("userId")
+	if event.UserID != userID {
+		context.JSON(http.StatusUnauthorized, gin.H{"message": "You are not authorized to delete this event."})
 		return
 	}
 

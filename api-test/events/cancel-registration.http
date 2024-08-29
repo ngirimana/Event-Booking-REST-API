@@ -1,0 +1,3 @@
+DELETE http://localhost:8000/events/2/register
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNjaGFkcmFuMUBnbWFpbC5jb20iLCJleHAiOjE3MjQ5OTg2MzMsInVzZXJJZCI6Mn0.IRuqM81oG2O5XUTb0xA4OJAjBTkzBdRIy_0Zv3quhhk
+

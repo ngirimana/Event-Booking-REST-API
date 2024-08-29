@@ -43,12 +43,12 @@ func (u *User) Authenticate() error {
 	var retrievedPassword string
 	err := row.Scan(&u.ID, &retrievedPassword)
 	if err != nil {
-		return errors.New("Credentials invalid.")
+		return errors.New("credentials invalid")
 	}
 
 	isPasswordValid := utils.CheckPassword(u.Password, retrievedPassword)
 	if !isPasswordValid {
-		return errors.New("Invalid credentials.")
+		return errors.New("invalid credentials")
 	}
 	return nil
 
